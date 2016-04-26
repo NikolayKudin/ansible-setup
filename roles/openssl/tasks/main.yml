@@ -1,0 +1,6 @@
+---
+- name: Unpack openssl
+  shell: chdir={{base_dir}}/tmp tar vxzf openssl-1.0.2g.tar.gz
+
+- name: Config, make and make install openssl
+  shell: chdir={{base_dir}}/tmp/openssl-1.0.2g ./config shared --prefix={{base_dir}}/opt/openssl && make && make install

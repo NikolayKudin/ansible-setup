@@ -1,0 +1,6 @@
+---
+- name: Unpack libffi
+  shell: chdir={{base_dir}}/tmp tar vxzf libffi-3.2.1.tar.gz
+
+- name: Config, make and make install libffi
+  shell: chdir={{base_dir}}/tmp/libffi-3.2.1 ./configure --prefix={{base_dir}}/opt/libffi && make && make install

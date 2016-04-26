@@ -1,0 +1,6 @@
+---
+- name: Unpack zlib
+  shell: chdir={{base_dir}}/tmp tar vxzf zlib-1.2.8.tar.gz
+
+- name: Config, make and make install zlib
+  shell: chdir={{base_dir}}/tmp/zlib-1.2.8 ./configure --prefix={{base_dir}}/opt/zlib && make && make install

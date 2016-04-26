@@ -1,0 +1,25 @@
+---
+# Investigation of ansible features
+
+- hosts: hosts
+  remote_user: '{{user}}'
+
+  vars:
+    base_dir: '/home/{{user}}'
+    build_env:
+      CPPFLAGS: "-I{{base_dir}}/opt/libffi/lib/libffi-3.2.1/include -I{{base_dir}}/opt/zlib/include -I{{base_dir}}/opt/openssl/include -I{{base_dir}}/opt/openssl/include/openssl"
+      LD_LIBRARY_PATH: "{{base_dir}}/opt/openssl/lib:{{base_dir}}/opt/libffi/lib64:{{base_dir}}/opt/zlib/lib"
+    run_env:
+      PATH: "{{base_dir}}/opt/Python27/bin:{{ ansible_env.PATH }}"
+      PYTHONPATH: "{{base_dir}}/opt/Python27"
+      LD_LIBRARY_PATH: "{{base_dir}}/opt/openssl/lib:{{base_dir}}/opt/libffi/lib64:{{base_dir}}/opt/zlib/lib"
+
+  roles:
+    - folders
+    - zlib
+    - libffi
+    - openssl
+    - python
+    - ansible_setup
+    - environment_variables
+

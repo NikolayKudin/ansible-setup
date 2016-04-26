@@ -1,0 +1,4 @@
+---
+- name: Install ansible itself
+  shell: pip install --no-index --find-links file:///{{base_dir}}/tmp ansible
+  environment: "{{run_env}}"

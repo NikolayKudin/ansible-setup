@@ -1,0 +1,12 @@
+---
+- name: Add section header
+  lineinfile: dest={{base_dir}}/.bashrc line="# === Python environment variables ===" state=present
+
+- name: Define PYTHONPATH var
+  lineinfile: dest={{base_dir}}/.bashrc line="export PYTHONPATH={{base_dir}}/opt/Python27" state=present
+
+- name: Define PATH var
+  lineinfile: dest={{base_dir}}/.bashrc line="export PATH=$PYTHONPATH/bin:$PATH" state=present
+
+- name: Define PATH var
+  lineinfile: dest={{base_dir}}/.bashrc line="export LD_LIBRARY_PATH={{base_dir}}/opt/openssl/lib:{{base_dir}}/opt/libffi/lib64:{{base_dir}}/opt/zlib/lib:$LD_LIBRARY_PATH" state=present

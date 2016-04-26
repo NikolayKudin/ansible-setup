@@ -1,0 +1,15 @@
+---
+- name: Unpack Python
+  shell: chdir={{base_dir}}/tmp tar vxzf Python-2.7.11.tgz
+
+- name: Config, make and make install Python
+  shell: chdir={{base_dir}}/tmp/Python-2.7.11 ./configure --prefix={{base_dir}}/opt/Python27 CFLAGS="-I{{base_dir}}/opt/libffi/lib/libffi-3.2.1/include -I{{base_dir}}/opt/zlib/include -I{{base_dir}}/opt/openssl/include -I{{base_dir}}/opt/openssl/include/openssl" LDFLAGS="-L{{base_dir}}/opt/openssl/lib -L{{base_dir}}/opt/libffi/lib64 -L{{base_dir}}/opt/zlib/lib" && make && make install
+  environment: "{{build_env}}"
+
+- name: Install pip
+  shell: chdir={{base_dir}}/tmp/Python-2.7.11 python -m ensurepip
+  environment: "{{run_env}}"
+
+- name: Upgrade pip
+  shell: pip install --upgrade pip
+  environment: "{{run_env}}"
